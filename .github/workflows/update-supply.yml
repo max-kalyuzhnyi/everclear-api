@@ -1,0 +1,15 @@
+name: Update Supply
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # daily at midnight UTC
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Supply
+        run: |
+          curl -X GET \
+          -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+          https://everclear-api.vercel.app/api/cron/update-supply 
